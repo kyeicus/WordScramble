@@ -12,6 +12,7 @@ struct ContentView: View {
     @State private var usedWords = [String]()
     @State private var rootWord = ""
     @State private var newWord = ""
+    @State private var showingWordCount = false
     
     @State private var errorTitle = ""
     @State private var errorMessage = ""
@@ -23,6 +24,7 @@ struct ContentView: View {
                 Section{
                     TextField("Enter new word", text: $newWord)
                         .autocapitalization(.none)
+                        .disableAutocorrection(true)
                 }
                 Section{
                     ForEach(usedWords, id: \.self){ word in
@@ -31,6 +33,7 @@ struct ContentView: View {
                             Text(word)
                         }
                     }
+                    Text(usedWords.count == 1 ? "1 word" : "\(usedWords.count) words derived from \(rootWord.uppercased())")
                 }
             }
             .navigationTitle(rootWord)
@@ -61,6 +64,7 @@ struct ContentView: View {
             return
         }
         withAnimation{
+            
             usedWords.insert(answer, at: 0)
         }
         newWord = ""
