@@ -33,7 +33,7 @@ struct ContentView: View {
                             Text(word)
                         }
                     }
-                    Text(usedWords.count == 1 ? "1 word" : "\(usedWords.count) words derived from \(rootWord.uppercased())")
+                    Text(usedWords.count == 1 ? "1 word " : "\(usedWords.count) words derived from \(rootWord.uppercased())")
                 }
             }
             .navigationTitle(rootWord)
